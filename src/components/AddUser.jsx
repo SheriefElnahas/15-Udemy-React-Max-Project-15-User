@@ -1,17 +1,16 @@
 import { useState } from 'react';
 import Wrapper from './Wrapper';
 
-function AddUser(props) {
+function AddUser({ onUserSubmit, onErrorSubmit }) {
   const [userInfo, setUserInfo] = useState({
-    username: 'Max',
-    age: '25',
+    username: '',
+    age: '',
   });
 
   const handleChange = (e) => {
     setUserInfo((prevUserInfo) => {
       return {
         ...prevUserInfo,
-
         [e.target.name]: e.target.value,
       };
     });
@@ -22,16 +21,16 @@ function AddUser(props) {
 
     setUserInfo({ username: '', age: '' });
     if (!userInfo.username || !userInfo.age) {
-      console.log('Please enter a valid name and age (non-empty values).');
+      onErrorSubmit('Please enter a valid name and age (non-empty values).');
       return;
     }
 
-    if (userInfo.age < 0) {
-      console.log('Please enter a valid age');
+    if (userInfo.age <= 0) {
+      onErrorSubmit('Please enter a valid age');
       return;
     }
 
-    props.onSubmit(userInfo);
+    onUserSubmit(userInfo);
   };
   return (
     <Wrapper>
