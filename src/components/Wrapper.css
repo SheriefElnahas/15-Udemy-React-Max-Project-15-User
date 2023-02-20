@@ -24,3 +24,10 @@
   cursor: pointer;
   border: none;
 }
+
+.wrapper p {
+  font-weight: bold;
+  border: 1px solid #e4b6b6;
+  padding: 0.4rem;
+  border-radius: 5px;
+}

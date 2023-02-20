@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import Wrapper from './Wrapper';
 
-function User() {
+function AddUser(props) {
   const [userInfo, setUserInfo] = useState({
-    username: '',
-    age: '',
+    username: 'Max',
+    age: '25',
   });
 
   const handleChange = (e) => {
     setUserInfo((prevUserInfo) => {
       return {
         ...prevUserInfo,
+
         [e.target.name]: e.target.value,
       };
     });
@@ -30,7 +31,7 @@ function User() {
       return;
     }
 
-    console.log(userInfo);
+    props.onSubmit(userInfo);
   };
   return (
     <Wrapper>
@@ -47,4 +48,4 @@ function User() {
   );
 }
 
-export default User;
+export default AddUser;
